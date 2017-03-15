@@ -7,24 +7,41 @@
   <title>Document</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="function.js" type="text/javascript"></script>
-  <script src="socket.io.js" type="text/javascript"  ></script>
+  <script src="socket.io.js" type="text/javascript"></script>
+  <!-- <link href="game_monitor.css" rel="stylesheet" type="text/css"> -->
   <style type="text/css">
-    html, body { width: 100%; height: 100%; }
-    label {
-      border : 1px solid gray;
-    }
-    #div_show_problem {
-      width: 50%;
-      height: 10%;
-      margin: 40px auto;
-      border: 1px solid gray;
-    }
+  html, body { width: 100%; height: 100%; }
+  label {
+    border : 1px solid gray;
+  }
+  #div_show_problem {
+    width: 50%;
+    height: 10%;
+    margin: 40px auto;
+    border: 1px solid gray;
+  }
+  table {
+    border-collapse: collapse;
+    width: 50%;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  table, th, td {
+    border: 1px solid black;
+  }
+  td {
+    width: 30px;
+    height: 30px;
+  }
   </style>
 </head>
 <body>
   <header>
 
   </header>
+  <p>
+
   <div id="div_show_problem">
 
   </div>
@@ -35,7 +52,9 @@
       <label>?</label>
     </div>
   </div>
-    <script type="text/javascript">
+  <!-- <iframe src="http://localhost:3000/table.html" width=500 height=200 frameborder=0 /> -->
+  <!-- <iframe src="table.html" frameborder=1> -->
+  <script type="text/javascript">
     (function($){
       var group1 = $('#group1');
       var socket = io();
@@ -59,9 +78,9 @@
       socket.on('chat message', function(msg){
         console.log('msg received');
         $('#div_show_problem').html(msg);
-    });
+      });
     })(jQuery)
-    </script>
+  </script>
   <footer>
 
   </footer>

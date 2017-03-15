@@ -3,6 +3,7 @@ var app  = express();
 // var app = require('express')();
 var http = require('http').Server(app);
 var bodyParser  = require('body-parser');
+var flag;
 
 app.set('view engine','jade');
 app.set('views','./views');
@@ -20,13 +21,13 @@ var io = require('socket.io').listen(server);
 
 //user connect
 io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
+  flag = false;
+  socket.on('cm', function(msg){
     console.log('message: ' + msg);
+    flag = true;
   });
   // console.log('a user connected');
 });
-// socket.on('chat message', function(msg){
-//    console.log('message: ' + msg);
 //user disconnect
 // io.on('connection', function(socket){
 //   console.log('a user connected');
@@ -35,11 +36,6 @@ io.on('connection', function(socket){
 //   });
 // });
 
-// io.on('connection', function(socket){
-//   socket.on('chat message', function(msg){
-//     io.emit('chat message', msg);
-//   });
-// });
 
 app.get('/', function(req, res){
   // res.send('good');
@@ -48,30 +44,9 @@ app.get('/', function(req, res){
 })
 
 app.get('/getProblem/:id',function(req, res){
-  io.emit('chat message','server\'s word');
+  io.emit('chat message','server\'s word flag: ' + flag);
   console.log(req.params.id);
 })
 app.post('/posting',function(req, res){
   res.send(req.body.subject + ',' + req.body.content);
 })
-// app.use(express.bodyParser());
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({
-//   extended: true
-// }));
-
-// app.post('/endpoint', function(req, res){
-// 	//var obj = {};
-// 	//console.log('body: ' + JSON.stringify(req.body));
-// 	//res.send(req.body);
-//   console.log(req.body);
-//   // console.log(JSON.stringify(req.body));
-//   io.sockets.emit('rMsg','manager gift');
-//
-// ;});
-//
-// app.get('/form', function(req, res){
-//     res.render('form');
-// });
-
-// NETSH WINSOCK RESET
