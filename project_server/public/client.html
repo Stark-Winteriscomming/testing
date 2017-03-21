@@ -66,7 +66,8 @@
       });
       group1.on('click', function(){
         console.log(this.id);
-        socket.emit('chat message', 'emit message');
+        // socket.emit('chat message', 'emit message');
+        socket.emit('cm', 'emit message');
         $.ajax({
           url : 'http://127.0.0.1:3000/getProblem/' + this.id,
           success : function(data){
